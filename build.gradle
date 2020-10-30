@@ -15,12 +15,20 @@ plugins {
 
     // required for "application" section below
     id 'application'
+
+    // makes setting up a ScalaFX-Gradle project a breeze
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+// Use whatever subset of the JavaFX modules you need. This is all of them.
+javafx {
+    version = '12.0.2'
+    modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing', 'javafx.web' ]
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -34,6 +42,10 @@ dependencies {
 
     // Need scala-xml at test runtime
     testRuntimeOnly 'org.scala-lang.modules:scala-xml_2.13:1.2.0'
+
+    // Must include the ScalaFX libraries -- version should match JavaFX
+    compile group: 'org.scalafx', name: 'scalafx_2.13', version: '12.0.2-R18'
+
 }
 
 application {
